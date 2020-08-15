@@ -83,7 +83,7 @@ Here is the piece of the Solarized color theme:
 
 There is also the cool command `theme-colors`, which renders the current color theme's palette, like this:
 
-![](images/theme-colors.png)
+![](images/theme-colors-example.png)
 
 
 ### Hooks on theme loading/unloading
