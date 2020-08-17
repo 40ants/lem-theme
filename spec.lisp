@@ -8,7 +8,12 @@
                 #:foreground
                 #:background-mode
                 #:current-theme)
-  (:export #:defspec))
+  (:export #:defspec
+           #:attribute-spec
+           #:make-color
+           #:make-attribute
+           #:spec
+           #:update-spec))
 (in-package lem-theme/spec)
 
 
@@ -79,16 +84,14 @@
   (:method ((theme theme))
     (append (list (list 'lem:display-background-mode
                         (background-mode theme)))
-            ;; When these lines are uncommented,
-            ;; some attributes for which we didn't specify colors
-            ;; become unreadable:
-            ;;
-            ;; (when (foreground theme)
-            ;;   (list (list 'lem:foreground
-            ;;               (foreground theme))))
-            ;; (when (background theme)
-            ;;   (list (list 'lem:background
-            ;;               (background theme))))
+            (when (foreground theme)
+              (list (list 'lem:foreground
+                          (make-color theme
+                                      (foreground theme)))))
+            (when (background theme)
+              (list (list 'lem:background
+                          (make-color theme
+                                      (background theme)))))
             (loop for attribute in lem::*attributes*
                   for spec = (attribute-spec theme attribute)
                   when spec
