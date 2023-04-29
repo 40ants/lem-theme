@@ -82,14 +82,14 @@
 
 (defgeneric spec (theme)
   (:method ((theme theme))
-    (append (list (list 'lem:display-background-mode
+    (append (list (list :display-background-mode
                         (background-mode theme)))
             (when (foreground theme)
-              (list (list 'lem:foreground
+              (list (list :foreground
                           (make-color theme
                                       (foreground theme)))))
             (when (background theme)
-              (list (list 'lem:background
+              (list (list :background
                           (make-color theme
                                       (background theme)))))
             (loop for attribute in lem::*attributes*
