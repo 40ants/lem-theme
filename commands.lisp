@@ -25,7 +25,7 @@
           nil)
     
     (lem:switch-to-buffer buffer)
-    (lem:erase-buffer)
+    (lem:erase-buffer buffer)
     
     (flet ((newline ()
              (lem:insert-character
@@ -65,7 +65,7 @@
           
           (flet ((has-spec-p (attribute)
                    (lem-theme/spec::attribute-spec theme attribute)))
-            (let* ((all-attributes (sort (copy-list lem::*attributes*)
+            (let* ((all-attributes (sort (copy-list lem-core::*attributes*)
                                          #'string>
                                          :key #'full-symbol-name))
                    (with-spec (remove-if-not #'has-spec-p all-attributes))

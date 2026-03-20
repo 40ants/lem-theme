@@ -92,7 +92,7 @@
               (list (list :background
                           (make-color theme
                                       (background theme)))))
-            (loop for attribute in lem::*attributes*
+            (loop for attribute in lem-core::*attributes*
                   for spec = (attribute-spec theme attribute)
                   when spec
                   collect (make-attribute theme
@@ -104,8 +104,8 @@
   (:documentation "Updates theme specification in Lem's internals and reloads theme if it is enabled.")
   (:method ((theme theme))
     (setf (gethash (theme-name theme)
-                   lem::*color-themes*)
-          (lem::make-color-theme
+                   lem-core::*color-themes*)
+          (lem-core::make-color-theme
            :specs (spec theme)
            :parent nil))
     (when (eql (class-of (current-theme))
